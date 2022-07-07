@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+<style>
+   
+    .gallery{
+        background-color: white;
+        padding: 20px 0;
+    }
+    .gallery img{
+        max-width : 100%;
+        max-height: 100%;
+        background-color: #ffffff;
+        padding:  0px;
+        width: 100%;
+        justify-content: center;
+        box-shadow: 0 0 15px rgba(0,0,0,0,0.3);
+    }
+
+</style>
+
+
+<div class = "container">
+    <h2> Here are some images from my travels around Mexico, Guatemala and Peru. ¡Muy bien!</h2>
+</div>
+
+<section class="gallery min-vh-100">
+    <div class = "container overflow-hidden">
+        
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            <div class="col pb-3">
+                <img class="gallery-item" src="static/images/cusco.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img class="gallery-item" src="static/images/volcano.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img class="gallery-item" src="static/images/costume.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img  class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img  class="gallery-item" src="static/images/carniceria.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img  class="gallery-item" src="static/images/greenhouse.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img  class="gallery-item" src="static/images/chiflon.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img class="gallery-item" src="static/images/chamula.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img  class="gallery-item" src="static/images/dog.jpg" alt="gallery" >
+            </div>
+            
+            <div class="col pb-3">
+                <img  class="gallery-item" src="static/images/itza.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img class="gallery-item" src="static/images/bus2.jpg" alt="gallery" >
+            </div>
+            <div class="col pb-3">
+                <img class="gallery-item" src="static/images/weaver.jpg" alt="gallery" >
+            </div>
+        </div>  
+    </div>
+</section>   
+
+
+{% endblock %}

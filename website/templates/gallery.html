@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+
+<style>
+   img{
+       max-width : 100%;
+       max-height: 100%;
+   }
+
+   .gallery{
+       background-color: beige;
+       padding: 80px 0;
+   }
+   .gallery img{
+       background-color: #ffffff;
+       padding: 15px;
+       width: 100%;
+       box-shadow: 0 0 15px rgba(0,0,0,0,0.3);
+       cursor: pointer;
+   }
+
+</style>
+
+<section class="gallery min-vh-100">
+   <div class = "container overflow-hidden">
+       
+       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gy-4">
+           <div class="col">
+               <img  class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img  class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img  class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img  class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img  class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img  class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+           <div class="col">
+               <img class="gallery-item" src="static/images/lakeAtitlan.jpg" alt="gallery" >
+           </div>
+       </div>  
+   </div>
+</section>   
+
+{% endblock %}

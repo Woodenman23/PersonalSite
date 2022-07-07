@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+<h1> Please register your email for updates! </h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input 
+        type="email" 
+        class="form-control" 
+        id="email"
+        name="email" 
+        placeholder="Enter email address"/>
+    </div>
+</form>
+<br />
+    <button type="submit" class="btn btn-primary">Register</button>
+{% endblock %}
