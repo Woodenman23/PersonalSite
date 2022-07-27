@@ -6,13 +6,11 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/register', methods=["GET", "POST"])
 def register():
-     data = request.form
+    
      if request.method == 'POST':
-          email = data.get('email')
-
-          flash("Not a valid email address", category='error')
-       
-
+          email = request.form.get('email')
+          if len(email) < 10: flash("Not a valid email address", category='error')
+          else: flash("Thank you, email submitted.")
 
     
      return render_template("register.html")
