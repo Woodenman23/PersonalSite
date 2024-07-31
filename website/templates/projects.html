@@ -1,74 +1,124 @@
-{% extends "layout.html" %}
-{% block title %}Projects{% endblock %}
-
-{% block content %}
+{% extends "layout.html" %} {% block title %}Projects{% endblock %} {% block
+content %}
 
 <head>
-    <style>
-        #project_img{
-            padding: 15px;
-        }
-    </style>
+  <style>
+    #project_img {
+      padding: 15px;
+    }
+  </style>
 </head>
 
-<div class="container ">
-    <div class="row">
-        
-        <h2>Yoga Sequencer</h2>
-        
+<div class="container">
+  <div class="row">
+    <h2>Virtual Assistant</h2>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <img
+        class="img-fluid w-100"
+        id="project_img"
+        src="static/images/virtual-assistant.png"
+        alt="dog"
+        height="100"
+      />
     </div>
-    <div class = "row">
-        <div class="col-7">
-            <p>In order to reduce thinking time during a yoga practice I designed a tkinter app 
-                which automatically chooses a sequence of poses.
-            </p>
-            <p>
-                It will then display images of each pose, with their names, for a set number of seconds,
-                before moving on to the next pose in the sequence.
-            </p>
-            <p>
-                The sequence will always end with Shavasana "corpse pose" which relaxes the body and allows
-                one to recover from the practice.
-            </p>
-            <p>
-                The source code for this project can be found here: <a href="https://github.com/Woodenman23/Yoga_Sequence">Yoga Sequencer</a>
-            </p>
-        </div>
-        <div class="col-5">
-                <img  class="img-fluid w-100" id="project_img" src="static/images/yoga.png" alt="dog" height="100">
-        </div>
+    <div class="col-7">
+      <p>
+        CLI application which can return useful information about all things.
+      </p>
+      <p>
+        Capable of displaying the weather and time in any town in the world.
+      </p>
+      <p>
+        Returns summary about any topic which has a Wikipedia page using the
+        Wikipedia api.
+      </p>
+      <p>
+        The source code for this project can be found here:
+        <a href="https://github.com/Woodenman23/virtual-assistant"
+          >Virtual Assistant</a
+        >
+      </p>
     </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h2>Yoga Sequencer</h2>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <p>
+        In order to reduce thinking time during a yoga practice I designed a
+        tkinter app which automatically chooses a sequence of poses.
+      </p>
+      <p>
+        It will then display images of each pose, with their names, for a set
+        number of seconds, before moving on to the next pose in the sequence.
+      </p>
+      <p>
+        The sequence will always end with Shavasana "corpse pose" which relaxes
+        the body and allows one to recover from the practice.
+      </p>
+      <p>
+        The source code for this project can be found here:
+        <a href="https://github.com/Woodenman23/Yoga_Sequence"
+          >Yoga Sequencer</a
+        >
+      </p>
+    </div>
+    <div class="col-5">
+      <img
+        class="img-fluid w-100"
+        id="project_img"
+        src="static/images/yoga.png"
+        alt="dog"
+        height="100"
+      />
+    </div>
+  </div>
 </div>
 <div class="container">
-    <div class="row">
-        <h2>Hangman CLI Game</h2>
-    </div>
+  <div class="row">
+    <h2>Hangman CLI Game</h2>
+  </div>
 
-    <div class = "row">
-        <div class="col-5">
-            <img  class="img-fluid w-100" id="project_img" src="static/images/hangman.png" alt="dog" height="100">
-        </div>
-        <div class="col-7">
-            <p>A hangman CLI game that chooses a random word from list of words.
-                 It then has user guess letters until all letters are guessed or wrong guesses are made.
-            </p>
-            <p>
-                The interface shows guessed letters alongside dashes (_) to show position of non-guessed letters.
-                It also shows the user what letters they have already guessed.
-                Errors are handled well; with user told to attempt a new input if non-alphabetic input is made.
-                Inputs are not case sensitive; all lowercase inputs are converted to uppercase before checked against 
-                word.
-            </p>
-            <p>
-                The interface will also display graphic of noose and fill in hanged man as incorrect guesses are made.
-                This was acheived using a "draw" helper function (funtion in external python file).
-
-            </p>
-            <p>
-                The source code for this project can be found here: <a href="https://github.com/Woodenman23/Hangman">Hangman</a>
-            </p>
-        </div>
-        
+  <div class="row">
+    <div class="col-5">
+      <img
+        class="img-fluid w-100"
+        id="project_img"
+        src="static/images/hangman.png"
+        alt="dog"
+        height="100"
+      />
     </div>
+    <div class="col-7">
+      <p>
+        A hangman CLI game that chooses a random word from list of words. It
+        then has user guess letters until all letters are guessed or wrong
+        guesses are made.
+      </p>
+      <p>
+        The interface shows guessed letters alongside dashes (_) to show
+        position of non-guessed letters. It also shows the user what letters
+        they have already guessed. Errors are handled well; with user told to
+        attempt a new input if non-alphabetic input is made. Inputs are not case
+        sensitive; all lowercase inputs are converted to uppercase before
+        checked against word.
+      </p>
+      <p>
+        The interface will also display graphic of noose and fill in hanged man
+        as incorrect guesses are made. This was acheived using a "draw" helper
+        function (funtion in external python file).
+      </p>
+      <p>
+        The source code for this project can be found here:
+        <a href="https://github.com/Woodenman23/Hangman">Hangman</a>
+      </p>
+    </div>
+  </div>
 </div>
 {% endblock %}

@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template
-
 views = Blueprint('views', __name__)
 
 
@@ -19,3 +18,4 @@ def gallery():
 @views.route("/projects")
 def projects():
     return render_template("projects.html")
+
