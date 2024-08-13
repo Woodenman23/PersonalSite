@@ -1,6 +1,7 @@
-{% extends "layout.html" %} {% block title %}Login {% endblock %} {% block
-content %}
+{% extends "layout.html.j2" %}  
+{% block title %} Login {% endblock %} 
 
+{% block content %} 
 <form action="#" method="post">
   <p>Name:</p>
   <p><input type="text" name="nm" /></p>
@@ -8,5 +9,4 @@ content %}
   <p><input type="text" name="pwd" /></p>
   <p><input type="submit" name="submit" /></p>
 </form>
-
 {% endblock %}

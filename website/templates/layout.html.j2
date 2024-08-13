@@ -53,6 +53,15 @@
             <a class="nav-item nav-link" id="register" href="/register"
               >Register your Email</a
             >
+            {% if not session["logged_in"] %}
+            <a class="nav-item nav-link" id="login" href="/login"
+              >Login</a
+            >
+            {% else %}
+            <a class="nav-item nav-link" id="logout" href="/logout"
+              >Logout</a
+            >
+            {% endif %}
           </div>
         </div>
       </div>
