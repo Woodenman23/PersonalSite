@@ -16,7 +16,7 @@ def register():
             new_user = User(email=email)
             db.session.add(new_user)
             db.session.commit()
-            flash("Thank you, email submitted.", category="success")
+            flash("Thank you, email submitted!", category="success")
             return redirect(url_for("views.home"))
 
     return render_template("register.html.j2")
