@@ -80,6 +80,7 @@ def ask():
         if result == None:
             return no_result(search_term)
         return render_template("answer.html.j2", search_term=search_term, result=result)
+        # TODO: handle API connection error
     else:
         return render_template("questions.html.j2")
 

@@ -1,102 +1,110 @@
-{% extends "layout.html.j2" %} {% block title %}Gallery{% endblock %} {% block
-content %}
+{% extends "layout.html.j2" %}
+{% block title %} Gallery {% endblock %}
+{% block content %}
 <style>
-  .gallery {
-    background-color: white;
-    padding: 20px 0;
-  }
-  .gallery img {
-    max-width: 100%;
-    max-height: 100%;
-    background-color: #ffffff;
-    padding: 0px;
-    width: 100%;
-    justify-content: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0, 0.3);
-  }
+    /* Set a fixed square size for the image container */
+    .image-container {
+        width: 300px;    /* Set width (e.g., 300px) */
+        height: 300px;   /* Set height to the same as width to make it square */
+        overflow: hidden; /* Hide any part of the image that overflows */
+    }
+    .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top left;
+            transition: transform 0.3s ease; /* Add transition for smooth hover effect */
+    }
+    .image-container:hover img {
+            transform: scale(1.2); /* Increase the size of the image on hover */
+    }
 </style>
 
+
 <div class="container">
-  <h2>
-    Here are some images from my travels around Mexico, Guatemala and Peru. ¡Muy
-    bien!
-  </h2>
-</div>
+    <h1 class="text-center my-4">Photo Gallery</h1>
 
-<section class="gallery min-vh-100">
-  <div class="container overflow-hidden">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-      <div class="col pb-3">
-        <img class="gallery-item" src="static/images/cusco.jpg" alt="gallery" />
-      </div>
-      <div class="col pb-3">
-        <img
-          class="gallery-item"
-          src="static/images/volcano.jpg"
-          alt="gallery"
-        />
-      </div>
-      <div class="col pb-3">
-        <img
-          class="gallery-item"
-          src="static/images/costume.jpg"
-          alt="gallery"
-        />
-      </div>
-      <div class="col pb-3">
-        <img
-          class="gallery-item"
-          src="static/images/lakeAtitlan.jpg"
-          alt="gallery"
-        />
-      </div>
-      <div class="col pb-3">
-        <img
-          class="gallery-item"
-          src="static/images/carniceria.jpg"
-          alt="gallery"
-        />
-      </div>
-      <div class="col pb-3">
-        <img
-          class="gallery-item"
-          src="static/images/greenhouse.jpg"
-          alt="gallery"
-        />
-      </div>
-      <div class="col pb-3">
-        <img
-          class="gallery-item"
-          src="static/images/chiflon.jpg"
-          alt="gallery"
-        />
-      </div>
-      <div class="col pb-3">
-        <img
-          class="gallery-item"
-          src="static/images/chamula.jpg"
-          alt="gallery"
-        />
-      </div>
-      <div class="col pb-3">
-        <img class="gallery-item" src="static/images/dog.jpg" alt="gallery" />
-      </div>
+    <div class="row">
+        <!-- Image 1 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/chamula.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
 
-      <div class="col pb-3">
-        <img class="gallery-item" src="static/images/itza.jpg" alt="gallery" />
-      </div>
-      <div class="col pb-3">
-        <img class="gallery-item" src="static/images/bus2.jpg" alt="gallery" />
-      </div>
-      <div class="col pb-3">
-        <img
-          class="gallery-item"
-          src="static/images/weaver.jpg"
-          alt="gallery"
-        />
-      </div>
+        <!-- Image 2 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/weaver.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
+
+        <!-- Image 3 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/dog.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
+
+        <!-- Image 4 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/volcano.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
+
+        <!-- Image 5 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/atitlan.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
+
+        <!-- Image 6 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/sanCrisNight.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
+
+        <!-- Image 7 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/soldiers.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
+
+        <!-- Image 8 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/chamula.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
+
+        <!-- Image 9 -->
+        <div class="col-md-4 mb-4">
+            <a href="{{ url_for('views.ask') }}">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/turtle.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+            </a>
+        </div>
     </div>
-  </div>
-</section>
-
+</div>
 {% endblock %}
