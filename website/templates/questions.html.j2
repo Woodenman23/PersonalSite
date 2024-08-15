@@ -1,0 +1,11 @@
+{% extends "layout.html.j2" %}
+
+{% block title %}Deep Thought{% endblock %}
+
+{% block content %}
+<p> "Welcome traveller, I am a computer that knows many things..."</p>
+<p> "Tell me, what do you desire to know about?" </p>
+<form action="#" method="POST">
+    <input type="string", name="search_term", placeholder="??????????????"/>
+    <input type="submit", value="Submit"/>
+{% endblock %}

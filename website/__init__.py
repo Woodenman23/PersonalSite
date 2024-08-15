@@ -10,24 +10,25 @@ def create_app() -> Flask:
 
     # import blueprint so that app knows available routes
     from .views import views
-    from .auth import auth
 
-    app.register_blueprint(auth, url_prefix="/")
+    # from .auth import auth
+
+    # app.register_blueprint(auth, url_prefix="/")
     app.register_blueprint(views, url_prefix="/")
 
-    db = SQLAlchemy(app)
+    # db = SQLAlchemy(app)
 
-    # Table in database
-    class Users(db.Model):
-        _id = db.Column("id", db.Integer, primary_key=True)  # column 1
-        name = db.Column("name", db.String(100))
-        email = db.Column("email", db.String(100))
+    # # Table in database
+    # class Users(db.Model):
+    #     _id = db.Column("id", db.Integer, primary_key=True)  # column 1
+    #     name = db.Column("name", db.String(100))
+    #     email = db.Column("email", db.String(100))
 
-        def __init__(self, name, email) -> None:
-            self.name = name
-            self.email = email
+    #     def __init__(self, name, email) -> None:
+    #         self.name = name
+    #         self.email = email
 
-    db.create_all()
+    # db.create_all()
 
     return app
 

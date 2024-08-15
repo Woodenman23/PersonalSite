@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
+from wikipedia.exceptions import DisambiguationError
+from website.wiki_search import wiki_search
 
 views = Blueprint("views", __name__)
 
@@ -65,3 +67,26 @@ def logout():
         session.pop("email", None)
         flash("You are now logged out.", "info")
     return render_template("login.html.j2")
+
+
+@views.route("/ask", methods=["POST", "GET"])
+def ask():
+    if request.method == "POST":
+        search_term = request.form["search_term"]
+        try:
+            result = wiki_search(search_term)
+        except DisambiguationError:
+            return no_result(search_term)
+        if result == None:
+            return no_result(search_term)
+        return render_template("answer.html.j2", search_term=search_term, result=result)
+    else:
+        return render_template("questions.html.j2")
+
+
+def no_result(search_term: str) -> str:
+    return render_template(
+        "answer.html.j2",
+        search_term=search_term,
+        result="I cannot summarize this, try something else.",
+    )
