@@ -1,0 +1,10 @@
+{% extends "layout.html.j2" %}
+{% block title %}{{ country }}{% endblock %}
+
+{% block content %}
+
+<p>{{ country_info }}</p>
+
+
+<a href="{{url_for('views.travel')}}">back to countries</a>
+{% endblock %}

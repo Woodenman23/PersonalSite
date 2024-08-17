@@ -1,5 +1,9 @@
 from flask import Flask
+from pathlib import Path
 from flask_sqlalchemy import SQLAlchemy
+
+PROJECT_ROOT = Path(__file__).parent.parent
+IMAGES_PATH = PROJECT_ROOT / "website/static/images"
 
 
 def create_app() -> Flask:

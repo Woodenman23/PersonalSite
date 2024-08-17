@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from wikipedia.exceptions import DisambiguationError
+
+from website import IMAGES_PATH
 from website.wiki_search import wiki_search
 
 views = Blueprint("views", __name__)
@@ -16,9 +18,25 @@ def joebird():
     return render_template("joebird.html.j2")
 
 
+@views.route("/travel")
+def travel():
+    countries = ["Egypt", "Thailand", "Australia"]
+    return render_template("travel.html.j2", countries=countries)
+
+
+@views.route("/<country>")
+def country(country: str) -> str:
+    country_info = wiki_search(country)
+    return render_template(
+        "country.html.j2", country=country, country_info=country_info
+    )
+
+
 @views.route("/gallery")
 def gallery():
-    return render_template("gallery.html.j2")
+    files = IMAGES_PATH.glob("*")
+    images = [file.name for file in files if file.is_file()]
+    return render_template("gallery.html.j2", images=images)
 
 
 @views.route("/projects")
