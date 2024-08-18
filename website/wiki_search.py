@@ -2,7 +2,7 @@ import wikipedia
 from rich import print
 
 
-def wiki_search(search_term: str) -> str | None:
+def wiki_summary(search_term: str) -> str | None:
     search_term = format_as_title(search_term)
     print(search_term)
     searches = wikipedia.search(search_term)
@@ -29,3 +29,12 @@ def format_as_title(search_term: str) -> str:
         title_words.append(word)
 
     return " ".join(title_words)
+
+
+def get_flag_url(country: str) -> str:
+    country = country.capitalize()
+    return [
+        image
+        for image in (wikipedia.page(country, auto_suggest=False).images)
+        if f"Flag_of_{country}" in image
+    ][0]

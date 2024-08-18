@@ -2,9 +2,24 @@ from flask import Blueprint, render_template, request, session, redirect, url_fo
 from wikipedia.exceptions import DisambiguationError
 
 from website import IMAGES_PATH
-from website.wiki_search import wiki_search
+from website.wiki_search import wiki_summary, get_flag_url
 
 views = Blueprint("views", __name__)
+
+COUNTRIES = [
+    "egypt",
+    "thailand",
+    "australia",
+    "guatemala",
+    "mexico",
+    "usa",
+    "united_kingdom",
+    "israel",
+    "india",
+    "japan",
+    "peru",
+    "el_salvador",
+]
 
 
 # define routes to webpages using 'views' blueprint
@@ -20,15 +35,23 @@ def joebird():
 
 @views.route("/travel")
 def travel():
-    countries = ["Egypt", "Thailand", "Australia"]
-    return render_template("travel.html.j2", countries=countries)
+    return render_template("travel.html.j2", countries=COUNTRIES)
 
 
 @views.route("/<country>")
 def country(country: str) -> str:
-    country_info = wiki_search(country)
+    country_info = wiki_summary(country)
+    files = (IMAGES_PATH / country).glob("*")
+    images = [file.name for file in files if file.is_file()]
+    advice_url = f"https://www.gov.uk/foreign-travel-advice/{country}"
+    flag_url = get_flag_url(country)
     return render_template(
-        "country.html.j2", country=country, country_info=country_info
+        "country.html.j2",
+        country=country,
+        country_info=country_info,
+        images=images,
+        advice_url=advice_url,
+        flag_url=flag_url,
     )
 
 
@@ -92,7 +115,7 @@ def ask():
     if request.method == "POST":
         search_term = request.form["search_term"]
         try:
-            result = wiki_search(search_term)
+            result = wiki_summary(search_term)
         except DisambiguationError:
             return no_result(search_term)
         if result == None:
