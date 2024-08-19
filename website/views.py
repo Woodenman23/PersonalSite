@@ -1,10 +1,23 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from wikipedia.exceptions import DisambiguationError
+from pathlib import Path
 
-from website import IMAGES_PATH
+from website import IMAGES_PATH, PROJECT_ROOT
 from website.wiki_search import wiki_summary, get_flag_url
 
 views = Blueprint("views", __name__)
+
+
+class Project:
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.text = (
+            PROJECT_ROOT / "website/static/projects/text" / f"{name}.txt"
+        ).read_text()
+        self.image_path = IMAGES_PATH / "chamula.jpeg"  # f"projects/{name}.png"
+        self.github_url = "https://github.com/Woodenman23/virtual-assistant"
+        print(self.image_path)
+
 
 COUNTRIES = [
     "egypt",
@@ -12,14 +25,31 @@ COUNTRIES = [
     "australia",
     "guatemala",
     "mexico",
-    "usa",
-    "united_kingdom",
+    # "usa",
+    # "united_kingdom",
     "israel",
     "india",
     "japan",
     "peru",
-    "el_salvador",
+    "sweden",
+    # "el_salvador",
 ]
+
+
+class Country:
+    # def get_text(name: str):
+    # if cache:
+    # get_from_cache(project, text)
+    # else:
+    # text = wiki_summary(name)
+    # path = PROJECT_ROOT / "website/static/projects/text" / name
+    # add_to_cache(path, text)
+    # return text
+    pass
+
+
+def add_to_cache(path: Path, text: str):
+    return path.write_text(text)
 
 
 # define routes to webpages using 'views' blueprint
@@ -64,7 +94,8 @@ def gallery():
 
 @views.route("/projects")
 def projects():
-    return render_template("projects.html.j2")
+    Virtual_Assistant = Project("virtual_assistant")
+    return render_template("projects.html.j2", project=Virtual_Assistant)
 
 
 @views.route("/login", methods=["POST", "GET"])

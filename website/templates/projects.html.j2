@@ -9,7 +9,6 @@
       }
     </style>
   </head>
-
   <div class="container">
     <div class="row">
       <h2>Virtual Assistant</h2>
@@ -19,25 +18,17 @@
         <img
           class="img-fluid w-100"
           id="project_img"
-          src="static/images/virtual-assistant.png"
-          alt="dog"
+          src="{{ project.image_path }}"
+          alt="virt-assistant-img"
           height="100"
         />
       </div>
       <div class="col-7">
         <p>
-          CLI application which can return useful information about all things.
-        </p>
-        <p>
-          Capable of displaying the weather and time in any town in the world.
-        </p>
-        <p>
-          Returns summary about any topic which has a Wikipedia page using the
-          Wikipedia api.
-        </p>
+          {{ project.text }}
         <p>
           The source code for this project can be found here:
-          <a href="https://github.com/Woodenman23/virtual-assistant"
+          <a href="{{ project.github_url }}"
             >Virtual Assistant</a
           >
         </p>
@@ -74,7 +65,7 @@
         <img
           class="img-fluid w-100"
           id="project_img"
-          src="static/images/yoga.png"
+          src="static/images/projects/yoga.png"
           alt="dog"
           height="100"
         />
