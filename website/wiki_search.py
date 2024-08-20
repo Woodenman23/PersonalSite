@@ -1,6 +1,8 @@
 import wikipedia
 from rich import print
 
+from website import PROJECT_ROOT
+
 
 def wiki_summary(search_term: str) -> str | None:
     search_term = format_as_title(search_term)
@@ -32,9 +34,14 @@ def format_as_title(search_term: str) -> str:
 
 
 def get_flag_url(country: str) -> str:
+    url_path = PROJECT_ROOT / "website/static/countries/flag_urls" / f"{country}.txt"
+    if url_path.exists():
+        return url_path.read_text()
     country = country.capitalize()
-    return [
+    urls = [
         image
         for image in (wikipedia.page(country, auto_suggest=False).images)
         if f"Flag_of_{country}" in image
-    ][0]
+    ]
+    url_path.write_text(urls[0])
+    return urls[0]

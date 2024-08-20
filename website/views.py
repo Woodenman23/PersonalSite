@@ -1,58 +1,31 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from wikipedia.exceptions import DisambiguationError
-from pathlib import Path
 
-from website import IMAGES_PATH, PROJECT_ROOT
-from website.wiki_search import wiki_summary, get_flag_url
+from website import IMAGES_PATH
+from website.wiki_search import wiki_summary
+from website.country import Country
+from website.projects import Project
 
 views = Blueprint("views", __name__)
 
+LOGO_URLS = {
+    "hostel_world": "https://a.hwstatic.com/raw/upload/f_auto,q_auto/wds/logos/brand/hw-orange.svg"
+}
 
-class Project:
-    def __init__(self, name: str) -> None:
-        self.name = name
-        self.text = (
-            PROJECT_ROOT / "website/static/projects/text" / f"{name}.txt"
-        ).read_text()
-        self.image_path = IMAGES_PATH / "chamula.jpeg"  # f"projects/{name}.png"
-        self.github_url = "https://github.com/Woodenman23/virtual-assistant"
-        print(self.image_path)
-
+PROJECTS = ["virtual_assistant", "yoga_sequencer", "hangman"]
 
 COUNTRIES = [
     "egypt",
-    "thailand",
     "australia",
     "guatemala",
     "mexico",
-    # "usa",
-    # "united_kingdom",
     "israel",
     "india",
     "japan",
     "peru",
-    "sweden",
-    # "el_salvador",
 ]
 
 
-class Country:
-    # def get_text(name: str):
-    # if cache:
-    # get_from_cache(project, text)
-    # else:
-    # text = wiki_summary(name)
-    # path = PROJECT_ROOT / "website/static/projects/text" / name
-    # add_to_cache(path, text)
-    # return text
-    pass
-
-
-def add_to_cache(path: Path, text: str):
-    return path.write_text(text)
-
-
-# define routes to webpages using 'views' blueprint
 @views.route("/")
 def home():
     return render_template("home.html.j2")
@@ -63,25 +36,24 @@ def joebird():
     return render_template("joebird.html.j2")
 
 
-@views.route("/travel")
+@views.route("/travel", methods=["POST", "GET"])
 def travel():
-    return render_template("travel.html.j2", countries=COUNTRIES)
-
-
-@views.route("/<country>")
-def country(country: str) -> str:
-    country_info = wiki_summary(country)
-    files = (IMAGES_PATH / country).glob("*")
+    if request.method == "POST":
+        country = request.form["country"]
+        return redirect(url_for("views.country", country_name=country))
+    files = IMAGES_PATH.glob("*")
     images = [file.name for file in files if file.is_file()]
-    advice_url = f"https://www.gov.uk/foreign-travel-advice/{country}"
-    flag_url = get_flag_url(country)
+    countries = [Country(country) for country in COUNTRIES]
+    return render_template("travel.html.j2", countries=countries, images=images)
+
+
+@views.route("/country/<country_name>")
+def country(country_name: str) -> str:
+    country = Country(country_name)
+
     return render_template(
         "country.html.j2",
         country=country,
-        country_info=country_info,
-        images=images,
-        advice_url=advice_url,
-        flag_url=flag_url,
     )
 
 
@@ -94,8 +66,8 @@ def gallery():
 
 @views.route("/projects")
 def projects():
-    Virtual_Assistant = Project("virtual_assistant")
-    return render_template("projects.html.j2", project=Virtual_Assistant)
+    projects = [Project(project) for project in PROJECTS]
+    return render_template("projects.html.j2", projects=projects)
 
 
 @views.route("/login", methods=["POST", "GET"])
@@ -138,7 +110,7 @@ def logout():
         session.pop("logged_in", None)
         session.pop("email", None)
         flash("You are now logged out.", "info")
-    return render_template("login.html.j2")
+    return render_template("home.html.j2")
 
 
 @views.route("/ask", methods=["POST", "GET"])
