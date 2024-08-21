@@ -5,6 +5,7 @@ from website import IMAGES_PATH
 from website.wiki_search import wiki_summary
 from website.country import Country
 from website.projects import Project
+from website.entities import Skill, Image
 
 views = Blueprint("views", __name__)
 
@@ -12,28 +13,43 @@ LOGO_URLS = {
     "hostel_world": "https://a.hwstatic.com/raw/upload/f_auto,q_auto/wds/logos/brand/hw-orange.svg"
 }
 
-PROJECTS = ["virtual_assistant", "yoga_sequencer", "hangman"]
+PROJECTS = ["virtual_assistant", "yoga_sequence", "hangman"]
 
 COUNTRIES = [
     "egypt",
     "australia",
     "guatemala",
     "mexico",
-    "israel",
     "india",
     "japan",
     "peru",
+    "thailand",
+    "cyprus",
+    "israel",
+    "belgium",
+    "france",
+    "italy",
+    "switzerland",
+    "canada",
+    "cambodia",
+    "vietnam",
+    "turkey",
+    "wales",
+    "scotland",
+    "england",
+    "bahrain",
+    "nepal",
+    # "USA",
+    "netherlands",
 ]
+
+SKILLS = ["linux", "python", "ansible", "apache", "git", "docker"]
 
 
 @views.route("/")
 def home():
-    return render_template("home.html.j2")
-
-
-@views.route("/joebird")
-def joebird():
-    return render_template("joebird.html.j2")
+    skills = [Skill(skill) for skill in SKILLS]
+    return render_template("home.html.j2", skills=skills)
 
 
 @views.route("/travel", methods=["POST", "GET"])
@@ -45,6 +61,12 @@ def travel():
     images = [file.name for file in files if file.is_file()]
     countries = [Country(country) for country in COUNTRIES]
     return render_template("travel.html.j2", countries=countries, images=images)
+
+
+@views.route("/images/<category>/<image_name>")
+def image(image_name: str, category: str) -> None:
+    image = Image(image_name, category)
+    return render_template("image.html.j2", image=image)
 
 
 @views.route("/country/<country_name>")

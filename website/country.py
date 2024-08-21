@@ -1,5 +1,6 @@
 from website import PROJECT_ROOT, IMAGES_PATH
 from website.wiki_search import wiki_summary, get_flag_url
+from website.entities import Image
 
 
 class Country:
@@ -27,7 +28,7 @@ class Country:
     def get_images(self):
         files = (IMAGES_PATH / self.name).glob("*")
         return [
-            file.name
+            Image(file.name, self.name)
             for file in files
             if file.is_file() and file.name.lower().endswith((".jpg", ".png"))
         ]

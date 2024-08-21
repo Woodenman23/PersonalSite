@@ -10,9 +10,9 @@
     <h3 class="my-4"> Learn about countries I have visited and see pictures of my trips: </h3>
     <div class="row">
         {% for country in countries %}
-            <div class="col-4">
+            <div class="col-3">
                     <div><a href="{{ url_for('views.country', country_name=country.name) }}">
-                    <img src="{{ country.urls['flag'] }}" class="img-fluid mb-4 mx-auto"  alt="Flag Image">
+                    <img src="{{ country.urls['flag'] }}" class="img-fluid mb-4 mx-auto" style="max-height: 100px;" alt="Flag Image">
                     <p>{{country.title}}</p></a>
                 </div>
             </div>    

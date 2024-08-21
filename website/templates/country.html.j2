@@ -30,9 +30,9 @@
 <div class="row">
     {% for image in country.get_images() %}
         <div class="col-md-4 mb-4">
-            <a href="{{ url_for('views.ask') }}">
+            <a href="{{ url_for('views.image', image_name=image.name, category=country.name) }}">
                 <div class="image-container">
-                    <img src="{{ url_for('static', filename='images/' ~ country.name ~ '/' ~ image ) }}" class="img-fluid" alt="Image">
+                    <img src="{{ image.path }}" class="img-fluid" alt="Image">
                 </div>
             </a>
         </div>

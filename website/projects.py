@@ -6,7 +6,8 @@ class Project:
         self.name = name
         self.title = name.replace("_", " ").title()
         self.text = (
-            PROJECT_ROOT / "website/static/projects/text" / f"{name}.txt"
+            PROJECT_ROOT / "website/static/projects/text" / f"{name}.md"
         ).read_text()
-        self.image_path = f"/static/images/projects/{name}.png"
-        self.github_url = "https://github.com/Woodenman23/virtual-assistant"
+        self.image_name = f"{name}.png"
+        self.image_path = f"/static/images/projects/{self.image_name}"
+        self.github_url = f"https://github.com/Woodenman23/{name}"

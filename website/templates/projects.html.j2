@@ -16,6 +16,7 @@
     </div>
     <div class="row">
       <div class="col-5">
+      <a href="{{ url_for('views.image', image_name=project.image_name, category='projects') }}">
         <img
           class="img-fluid w-100"
           id="project_img"
@@ -23,6 +24,7 @@
           alt="project-img"
           height="100"
         />
+        </a>
       </div>
       <div class="col-7">
         <p>
