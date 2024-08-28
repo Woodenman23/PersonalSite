@@ -5,7 +5,7 @@ from website import IMAGES_PATH
 from website.wiki_search import wiki_summary
 from website.country import Country
 from website.projects import Project
-from website.entities import Skill, Image
+from website.entities import Skill, Image, skill_urls
 
 views = Blueprint("views", __name__)
 
@@ -43,7 +43,7 @@ COUNTRIES = [
     "netherlands",
 ]
 
-SKILLS = ["linux", "python", "ansible", "apache", "git", "docker"]
+SKILLS = skill_urls.keys()
 
 
 @views.route("/")

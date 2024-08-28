@@ -4,7 +4,7 @@ from rich import print
 from website import PROJECT_ROOT
 
 
-def wiki_summary(search_term: str) -> str | None:
+def wiki_summary(search_term: str) -> str:
     search_term = format_as_title(search_term)
     print(search_term)
     searches = wikipedia.search(search_term)
