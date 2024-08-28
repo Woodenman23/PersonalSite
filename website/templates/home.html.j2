@@ -2,16 +2,26 @@
 {% block title %}Home{% endblock %} 
 {% block content %}
 
+<style>
+    .carousel-item img {
+      object-fit: cover;
+      height: 100px;
+      display: block; 
+      margin: 0 auto
+    }
+  </style>
+
 <div class="container">
   <div class="row">
-    <div class="col-md-8 mb-4">
+    <div class="col-md-8 mb-4 mx-auto">
       <img src="/static/images/san_francisco.jpg" alt="..." style="max-width: 100%" />
     </div>
     
   </div>
-  <h2>Hi there,</h2>
+  
   <div class="row mb-4">
-    <div class="col-md-8">
+    <div class="col-md-8 mx-auto">
+    <h3>Hi there,</h3>
       <p>
         My name is Joe. I am a British software developer living in San
         Francisco. Welcome to my site!
@@ -34,27 +44,48 @@
         and can be found <a href="https://www.rozziroomian.com">here</a>.
       </p>
       <p>Thanks for visiting!</p>
-    </div>
-    
+    </div> 
   </div>
-<h2 class="text-center my-4">Skills</h2>
-<div class="row mt-4">
-  {% for skill in skills %}
-      <div class="col-2">
-        <div class="d-flex justify-content-center align-items-center" style="height: 25vh;">
-          <a href="{{ skill.url }}">
-            <img
-              class="img-fluid"
-              id="skill_img"
-              src="{{ skill.image_path }}" 
-              alt="skill-img"
-            />
-          </a>
-        </div>
-      </div>
-  {% endfor %}
-  </div>
+
+
 </div>
 
+  <h2 class="text-center my-4">Skills</h2>
+
+  
+  <div class="container-fluid mb-3 mt-3 md-4">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        {% for skill in skills %}
+          {% if loop.first %}
+          <div class="carousel-item active">
+          {% else %}
+          <div class="carousel-item">
+          {% endif %}
+            <a href="{{ skill.url }}">
+              <img
+                src="{{ skill.image_path }}" 
+                alt="skill-img"
+                class="d-flex justify-content-center"
+              />
+            </a>
+          </div>
+          
+        {% endfor %}
+       
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-target="#carousel" data-slide="prev" role="button">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-target="#carousel" data-slide="next" >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  
 
 {% endblock %}
