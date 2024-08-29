@@ -34,6 +34,7 @@ def format_as_title(search_term: str) -> str:
 
 
 def get_flag_url(country: str) -> str:
+    country = country.replace(" ", "_")
     url_path = PROJECT_ROOT / "website/static/countries/flag_urls" / f"{country}.txt"
     if url_path.exists():
         return url_path.read_text()

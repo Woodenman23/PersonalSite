@@ -2,24 +2,24 @@
 {% block title %}{{ country.title }}{% endblock %}
 {% block content %}
 
-<h1 class="text-center my-4">{{ country.title }}</h1>
+<h1 class="text-center mb-4">{{ country.title }}</h1>
 
+<h4 class="text-center mb-4"> {{ country.show_weather() }} </h4>
 
-
-
-<div class="container">
+<div class="container mb-4" style="background-color: rgb(243, 241, 241); padding:20px">
     <div class="row">
         <div class="col-md-6">
             <img src="{{ country.urls['flag'] }}" class="img-fluid mb-4 mx-auto"  alt="Flag Image">
         </div>
-        <div class="col-md-6">
-            <div class="card mb-3">
+    
+        <div class="col-md-4">
+            <div class="card">
                 <div class="card-body">
-                  <h3 class="card-title"></i> Travel Resources </h3>
-                    <a href={{ country.urls['travel_advice'] }}><h3><i class="fas fa-info-circle"></i> UK Gov Travel Advice</h3></a>               
-                    <a href={{ country.urls['lonely_planet'] }}><h3><i class="fas fa-book"></i> Lonely Planet</h3></a>
-                    <a href={{ country.urls['redit'] }}></a><h3><i class="fab fa-reddit"></i> Reddit</h3></a>
-                    <a href={{ country.urls['hostel_world'] }}><h3><i class="fas fa-bed"></i> Hostel World</h3></a>
+                <h4 class="card-title"></i> Travel Resources </h4>
+                    <a href={{ country.urls['travel_advice'] }}><h5><i class="fas fa-info-circle"></i> UK Gov Travel Advice</h5></a>               
+                    <a href={{ country.urls['lonely_planet'] }}><h5><i class="fas fa-book"></i> Lonely Planet</h5></a>
+                    <a href={{ country.urls['redit'] }}><h5><i class="fab fa-reddit"></i> Reddit</h5></a>
+                    <a href={{ country.urls['hostel_world'] }}><h5><i class="fas fa-bed"></i> Hostel World</h5></a>
                 </div>
             </div>
         </div>

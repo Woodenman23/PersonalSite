@@ -3,52 +3,16 @@ from wikipedia.exceptions import DisambiguationError
 
 from website import IMAGES_PATH
 from website.wiki_search import wiki_summary
-from website.country import Country
-from website.projects import Project
+from website.country import Country, COUNTRIES
+from website.projects import Project, PROJECTS
 from website.entities import Skill, Image, skill_urls
 
 views = Blueprint("views", __name__)
 
-LOGO_URLS = {
-    "hostel_world": "https://a.hwstatic.com/raw/upload/f_auto,q_auto/wds/logos/brand/hw-orange.svg"
-}
-
-PROJECTS = ["virtual_assistant", "yoga_sequence", "hangman"]
-
-COUNTRIES = [
-    "egypt",
-    "australia",
-    "guatemala",
-    "mexico",
-    "india",
-    "japan",
-    "peru",
-    "thailand",
-    "cyprus",
-    "israel",
-    "belgium",
-    "france",
-    "italy",
-    "switzerland",
-    "canada",
-    "cambodia",
-    "vietnam",
-    "turkey",
-    "wales",
-    "scotland",
-    "england",
-    "bahrain",
-    "nepal",
-    # "USA",
-    "netherlands",
-]
-
-SKILLS = skill_urls.keys()
-
 
 @views.route("/")
 def home():
-    skills = [Skill(skill) for skill in SKILLS]
+    skills = [Skill(skill) for skill in skill_urls]
     return render_template("home.html.j2", skills=skills)
 
 

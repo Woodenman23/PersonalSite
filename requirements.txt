@@ -3,3 +3,5 @@ flask_sqlalchemy
 wikipedia
 rich
 pathlib
+requests
+yaml

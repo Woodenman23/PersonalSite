@@ -1,2 +1,5 @@
 *.txt
 !netherlands.txt
+!united_states.txt
+!united_kingdom.txt
+!el_salvador.txt

@@ -1,5 +1,7 @@
 from website import PROJECT_ROOT
 
+PROJECTS = ["virtual_assistant", "yoga_sequence", "hangman"]
+
 
 class Project:
     def __init__(self, name: str) -> None:

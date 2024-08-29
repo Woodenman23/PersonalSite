@@ -1,6 +1,36 @@
 from website import PROJECT_ROOT, IMAGES_PATH
 from website.wiki_search import wiki_summary, get_flag_url
 from website.entities import Image
+from website.get_weather import get_weather
+
+COUNTRIES = [
+    "egypt",
+    "australia",
+    "guatemala",
+    "mexico",
+    "india",
+    "japan",
+    "peru",
+    "thailand",
+    "cyprus",
+    "israel",
+    "belgium",
+    "france",
+    "italy",
+    "switzerland",
+    "canada",
+    "cambodia",
+    "vietnam",
+    "turkey",
+    "wales",
+    "scotland",
+    "england",
+    "bahrain",
+    "nepal",
+    "united states",
+    "netherlands",
+    "el salvador",
+]
 
 
 class Country:
@@ -32,3 +62,7 @@ class Country:
             for file in files
             if file.is_file() and file.name.lower().endswith((".jpg", ".png"))
         ]
+
+    def show_weather(self) -> str:
+        temp_scale = "f"
+        return get_weather(self.name, temp_scale)
