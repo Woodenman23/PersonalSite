@@ -4,4 +4,4 @@ wikipedia
 rich
 pathlib
 requests
-yaml
+PyYAML
