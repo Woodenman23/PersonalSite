@@ -20,7 +20,13 @@ def api_key():
 
 
 def get_weather(country: str, temp_scale: str) -> str:
-    emojis = {"clear": "☀️", "rain": "🌧️", "cloudy": "☁️", "snow": "❄️"}
+    emojis = {
+        "clear": "☀️",
+        "rain": "🌧️",
+        "thunderstorm": "⛈️",
+        "cloudy": "☁️",
+        "snow": "❄️",
+    }
 
     api_temp_scale = {"c": "metric", "f": "imperial"}
 
