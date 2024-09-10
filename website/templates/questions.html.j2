@@ -3,9 +3,15 @@
 {% block title %}Deep Thought{% endblock %}
 
 {% block content %}
-<p> "Welcome traveller, I am a computer that knows many things..."</p>
-<p> "Tell me, what do you desire to know about?" </p>
-<form action="#" method="POST">
-    <input type="string", name="search_term", placeholder="??????????????"/>
-    <input type="submit", value="Submit"/>
+<h1 class="text-center"> "Welcome traveller, I am a computer that knows many things..."</h1>
+<div class="container">
+    <div class="row">
+        <h2 class="text-center"> "Tell me, what do you desire to know about?" </h2>
+    </div>
+    <div class="row">
+        <form action="#" method="POST" class="text-center">
+            <input type="string", name="search_term", placeholder="??????????????"/>
+            <input type="submit", value="Submit"/>
+    </div>
+</div>
 {% endblock %}
