@@ -15,12 +15,14 @@ def create_app() -> Flask:
     # import blueprint so that app knows available routes
     from .views import views
 
-    # from .auth import auth
-
     # app.register_blueprint(auth, url_prefix="/")
     app.register_blueprint(views, url_prefix="/")
 
-    # db = SQLAlchemy(app)
+    db = SQLAlchemy(app)
+
+    # table in SQL
+    class Users(db.model):
+        
 
     # # Table in database
     # class Users(db.Model):
