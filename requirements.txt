@@ -5,3 +5,4 @@ rich
 pathlib
 requests
 PyYAML
+markdown

@@ -6,15 +6,13 @@ from website import PROJECT_ROOT
 
 def wiki_summary(search_term: str) -> str:
     search_term = format_as_title(search_term)
-    print(search_term)
     searches = wikipedia.search(search_term)
     if search_term in searches:
         return wikipedia.summary(search_term, auto_suggest=False)
     else:
-        print(f"{search_term} not found. choose a similar term to find out about: ")
-        for term in searches:
-            print(term)
-        return None
+        response = f"{search_term} not found. choose a similar term to find out about: "
+        response.join(searches)
+        return response
 
 
 def format_as_title(search_term: str) -> str:
