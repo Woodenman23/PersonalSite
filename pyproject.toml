@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "website"
+version = "0.1.0"
+description = "Personal website for displaying coding skills"
+authors = ["Joe Foster <josephrfoster@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "=3.0.0"
+flask-sqlalchemy = "^3.1.1"
+wikipedia = "^1.4.0"
+rich = "^13.9.4"
+pathlib = "^1.0.1"
+requests = "^2.32.3"
+pyyaml = "^6.0.2"
+markdown = "^3.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
