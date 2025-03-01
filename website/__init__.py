@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 PROJECT_ROOT = Path(__file__).parent.parent
 IMAGES_PATH = PROJECT_ROOT / "website/static/images"
+MODEL_PATH = f"/home/joe/models/dognet-convnext_large.pth"
 
 
 def create_app() -> Flask:

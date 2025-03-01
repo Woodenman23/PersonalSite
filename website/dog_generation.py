@@ -3,7 +3,7 @@ import torchvision.transforms as transforms
 import torchvision.models as models
 from PIL import Image
 
-from website import PROJECT_ROOT
+from website import PROJECT_ROOT, MODEL_PATH
 from website.dog_classes import classes as breeds
 
 upload_folder = PROJECT_ROOT / "website/static/uploads"
@@ -12,10 +12,9 @@ num_dog_breeds = 120
 
 def generate_dog(file):
     file_path = upload_folder / file.filename
-    file.save(str(file_path))
 
     # TODO: fix this path (download model state from google drive)
-    MODEL_PATH = f"/content/drive/MyDrive/projects/pokedex/dognet-convnext_large.pth"
+
     model = models.convnext_large(pretrained=True)
     model.classifier[-1] = torch.nn.Linear(
         model.classifier[-1].in_features, num_dog_breeds

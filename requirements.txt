@@ -6,3 +6,5 @@ pathlib
 requests
 PyYAML
 markdown
+torch
+torchvision

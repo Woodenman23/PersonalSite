@@ -24,15 +24,17 @@ def dog():
     if request.method == "POST":
         if "file" not in request.files:
             return "No file part"
-
+        file = request.files["file"]
         file_path = upload_folder / file.filename
+        file.save(str(file_path))
+
         dog_image_path = f'static/uploads/{str(file_path).split("/")[-1]}'
 
         file = request.files["file"]
         if file.filename == "":
             return "No selected file"
         return render_template(
-            "dog.html.j2", dog_image=dog_image_path, results=generate_dog(file)
+            "dog_result.html", dog_image=dog_image_path, results=generate_dog(file)
         )
     else:
         return render_template("dog_form.html")
