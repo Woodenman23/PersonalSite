@@ -1,19 +1,41 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from wikipedia.exceptions import DisambiguationError
 
-from website import IMAGES_PATH
+from website import IMAGES_PATH, PROJECT_ROOT
 from website.wiki_search import wiki_summary
 from website.country import Country, COUNTRIES
 from website.projects import Project, PROJECTS
 from website.entities import Skill, Image, skill_urls
+from website.dog_generation import generate_dog
 
 views = Blueprint("views", __name__)
+
+upload_folder = PROJECT_ROOT / "website/static/uploads"
 
 
 @views.route("/")
 def home():
     skills = [Skill(skill) for skill in skill_urls]
     return render_template("home.html.j2", skills=skills)
+
+
+@views.route("/dog", methods=["POST", "GET"])
+def dog():
+    if request.method == "POST":
+        if "file" not in request.files:
+            return "No file part"
+
+        file_path = upload_folder / file.filename
+        dog_image_path = f'static/uploads/{str(file_path).split("/")[-1]}'
+
+        file = request.files["file"]
+        if file.filename == "":
+            return "No selected file"
+        return render_template(
+            "dog.html.j2", dog_image=dog_image_path, results=generate_dog(file)
+        )
+    else:
+        return render_template("dog_form.html")
 
 
 @views.route("/travel", methods=["POST", "GET"])

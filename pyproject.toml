@@ -6,8 +6,8 @@ authors = ["Joe Foster <josephrfoster@protonmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-flask = "=3.0.0"
+python = "^3.9"
+flask = "3.0.0"
 flask-sqlalchemy = "^3.1.1"
 wikipedia = "^1.4.0"
 rich = "^13.9.4"
@@ -15,6 +15,9 @@ pathlib = "^1.0.1"
 requests = "^2.32.3"
 pyyaml = "^6.0.2"
 markdown = "^3.7"
+flask-login = "^0.6.3"
+torch = "^2.6.0"
+torchvision = "^0.21.0"
 
 
 [build-system]
