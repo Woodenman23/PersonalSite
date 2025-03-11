@@ -6,6 +6,4 @@ pathlib
 requests
 PyYAML
 markdown
-torch
-torchvision
 flask_scss
