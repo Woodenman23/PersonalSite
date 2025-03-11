@@ -6,7 +6,8 @@ from website.wiki_search import wiki_summary
 from website.country import Country, COUNTRIES
 from website.projects import Project, PROJECTS
 from website.entities import Skill, Image, skill_urls
-from website.dog_generation import generate_dog
+
+# from website.dog_generation import generate_dog
 
 views = Blueprint("views", __name__)
 
@@ -19,25 +20,25 @@ def home():
     return render_template("home.html.j2", skills=skills)
 
 
-@views.route("/dog", methods=["POST", "GET"])
-def dog():
-    if request.method == "POST":
-        if "file" not in request.files:
-            return "No file part"
-        file = request.files["file"]
-        file_path = upload_folder / file.filename
-        file.save(str(file_path))
+# @views.route("/dog", methods=["POST", "GET"])
+# def dog():
+#     if request.method == "POST":
+#         if "file" not in request.files:
+#             return "No file part"
+#         file = request.files["file"]
+#         file_path = upload_folder / file.filename
+#         file.save(str(file_path))
 
-        dog_image_path = f'static/uploads/{str(file_path).split("/")[-1]}'
+#         dog_image_path = f'static/uploads/{str(file_path).split("/")[-1]}'
 
-        file = request.files["file"]
-        if file.filename == "":
-            return "No selected file"
-        return render_template(
-            "dog_result.html", dog_image=dog_image_path, results=generate_dog(file)
-        )
-    else:
-        return render_template("dog_form.html")
+#         file = request.files["file"]
+#         if file.filename == "":
+#             return "No selected file"
+#         return render_template(
+#             "dog_result.html", dog_image=dog_image_path, results=generate_dog(file)
+#         )
+#     else:
+#         return render_template("dog_form.html")
 
 
 @views.route("/travel", methods=["POST", "GET"])
