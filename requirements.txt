@@ -7,3 +7,6 @@ requests
 PyYAML
 markdown
 flask_scss
+torch
+torchvision
+google-cloud-storage
