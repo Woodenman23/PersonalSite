@@ -25,7 +25,14 @@ def create_app() -> Flask:
     app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587))
     app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS', 'true').lower() in ['true', 'on', '1']
     app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
-    app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+    
+    # Load password from external file
+    password_file = Path.home() / '.gmail_app_passwords' / 'personal_website'
+    if password_file.exists():
+        app.config['MAIL_PASSWORD'] = password_file.read_text().strip().replace(' ', '')
+    else:
+        app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+    
     app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
 
     # Initialize extensions
