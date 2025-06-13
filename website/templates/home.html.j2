@@ -1,92 +1,111 @@
 {% extends "layout.html.j2" %} 
-{% block title %}Home{% endblock %} 
+{% from 'macros.html.j2' import project_card, metric_card, contact_button, skills_section, experience_card, education_card, tab_nav, tab_content, sidebar_profile %}
+{% block title %}Joseph Foster - Software Engineer{% endblock %} 
 {% block content %}
 
-<style>
-    .carousel-item img {
-      object-fit: cover;
-      height: 100px;
-      display: block; 
-      margin: 0 auto
-    }
-  </style>
+<!-- Sidebar -->
+{{ sidebar_profile(
+  name="Joseph Foster",
+  title="Software Developer | DevOps | AI Infrastructure", 
+  description="Passionate about automating infrastructure and building scalable solutions. I transform complex technical challenges into elegant, efficient systems.",
+  image_path="/static/images/profile.jpeg",
+  contact_buttons=contact_button("fas fa-envelope", "Email", "#", modal_target="contactModal") + 
+                  contact_button("fab fa-github", "GitHub", "https://github.com/Woodenman23") +
+                  contact_button("fab fa-linkedin", "LinkedIn", "https://linkedin.com/in/josephrfoster")
+) }}
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 mb-4 mx-auto">
-      <img src="/static/images/san_francisco.jpg" alt="..." style="max-width: 100%" />
-    </div>
-    
-  </div>
-  
-  <div class="row mb-4">
-    <div class="col-md-8 mx-auto">
-    <h3>Hi there,</h3>
-      <p>
-        My name is Joe. I am a British software developer living in San
-        Francisco. Welcome to my site!
-      </p>
+<!-- Main Content -->
+<div class="main-content">
+  <!-- Navigation Tabs -->
+  {{ tab_nav([
+    {"id": "about", "label": "About"},
+    {"id": "projects", "label": "Projects"}
+  ], active_tab="about") }}
 
-      <p>
-        Here you can find some examples of my coding projects as well as some
-        pictures from my travels all over the world.
-      </p>
-      <p>
-        My vision of a successful technology is a means to automate the dull and
-        repetitive aspects out of life, so that we humans can be free to reach
-        our creative potentials and persue meaningful fulfilling leisure
-        activities. Or just potter about...
-      </p>
-      
-      <p>
-        When I a not sitting over a computer copy-pasting from stack overflow, I
-        can be found walking on hiking trails around the bay and taking part in
-        music/arts festivals with my wife Rosalind. She is an incredible painter
-        and can be found <a href="https://www.rozziroomian.com">here</a>.
-      </p>
-      <p>Thanks for visiting!</p>
-    </div> 
-  </div>
+  <!-- Tab Content -->
+  <div class="tab-content" id="contentTabsContent">
+    <!-- About Tab -->
+    <div class="tab-pane fade show active" id="about" role="tabpanel">
 
-
-</div>
-
-  <h2 class="text-center my-4">Skills</h2>
-
-  
-  <div class="container-fluid mb-3 mt-3 md-4">
-    <div id="carousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        {% for skill in skills %}
-          {% if loop.first %}
-          <div class="carousel-item active">
-          {% else %}
-          <div class="carousel-item">
-          {% endif %}
-            <a href="{{ skill.url }}">
-              <img
-                src="{{ skill.image_path }}" 
-                alt="skill-img"
-                class="d-flex justify-content-center"
-              />
-            </a>
-          </div>
-          
-        {% endfor %}
-       
+      <!-- Skills -->
+      <div class="row mb-5">
+        {{ skills_section("DevOps & Infrastructure", [
+          "AWS", "Docker/Kubernetes", "Ansible", "CI/CD (GitLab, Jenkins)", 
+          "Infrastructure as Code", "Linux/Windows", "Apache/Nginx"
+        ]) }}
+        
+        {{ skills_section("Development & APIs", [
+          "Python", "JavaScript", "FastAPI", "OpenAI API", 
+          "LangChain", "SQL/PostgreSQL", "Oracle"
+        ]) }}
       </div>
 
-      <button class="carousel-control-prev" type="button" data-target="#carousel" data-slide="prev" role="button">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-target="#carousel" data-slide="next" >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <!-- Experience -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h3 class="mb-4">Recent Experience</h3>
+          {{ experience_card(
+            title="IT Support Technician",
+            company="Blu Wireless Technology", 
+            date_range="September 2022 – August 2024",
+            achievements=[
+              "Led company-wide server migration to Rocky Linux with minimal downtime",
+              "Built comprehensive Ansible configuration management system", 
+              "Delivered cross-functional automation tools improving deployment velocity",
+              "Managed enterprise infrastructure: firewalls, monitoring, VM deployment"
+            ]
+          ) }}
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mb-4">Education</h3>
+          {{ education_card(
+            degree="MPhys Theoretical Physics, 2:1",
+            institution="University of Liverpool",
+            year="2015",
+            description="Strong foundation in complex problem-solving, analytical thinking, and mathematical precision that drives my engineering approach."
+          ) }}
+        </div>
+      </div>
+
+      <!-- Key Achievements (moved to bottom) -->
+      <div class="row mb-5">
+        {{ metric_card("40%", "Reduction in manual deployment tasks") }}
+        {{ metric_card("50%", "Faster OS deployment with Ansible") }}
+        {{ metric_card("25%", "Resource optimization achieved") }}
+      </div>
+    </div>
+
+    <!-- Projects Tab -->
+    <div class="tab-pane fade" id="projects" role="tabpanel">
+      <h2 class="mb-4">Featured Projects</h2>
+      <div class="row">
+        {{ project_card(
+          title="Doggydex 🐾",
+          description="A production-ready web application that identifies dog breeds using Convolutional Neural Net fine-tuned using PyTorch. CNN optimized using quantization for lightweight infrastructure.",
+          link="https://josephfoster.me/doggydex"
+        ) }}
+        
+        {{ project_card(
+          title="CoverLettered 🪶",
+          description="A cover letter generator that takes a job description and user resume as input and outputs a cover letter tailored to the role.",
+          link="https://coverlettered.me/demo"
+        ) }}
+        
+        {{ project_card(
+          title="Lucid Voice 🤖",
+          description="LED visualization system for conversational AI responses using OpenAI API, speech-to-text and text-to-speech APIs. Interpreting spoken inputs and visualising responses.",
+          link="https://github.com/Woodenman23/led_controller"
+        ) }}
+      </div>
     </div>
   </div>
+</div>
 
-  
+<!-- Include Contact Modal Component -->
+{% include 'components/contact_modal.html.j2' %}
 
 {% endblock %}

@@ -1,9 +1,5 @@
 Flask===3.0.0
-flask_sqlalchemy
-wikipedia
-rich
-pathlib
-requests
-PyYAML
 markdown
 flask_scss
+flask-mail
+python-dotenv

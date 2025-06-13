@@ -1,0 +1,78 @@
+/* Component Styles */
+
+/* Navigation Tabs */
+.nav-tabs {
+  border-bottom: 2px solid #e9ecef;
+  margin-bottom: 30px;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  color: #495057;
+  font-weight: 600;
+  padding: 15px 25px;
+  border-radius: 0;
+}
+
+.nav-tabs .nav-link.active {
+  background: none;
+  border-bottom: 3px solid #667eea;
+  color: #667eea;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
+  color: #667eea;
+}
+
+/* Achievement Cards */
+.achievement-card {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Enhanced hover effect for clickable project cards */
+a .achievement-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+a .achievement-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Skill Badges */
+.skill-badge {
+  background: #f8f9fa;
+  color: #495057;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  display: inline-block;
+  border: 1px solid #dee2e6;
+}
+
+/* Metrics */
+.metric {
+  font-size: 2em;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 10px;
+}

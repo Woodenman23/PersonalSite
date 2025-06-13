@@ -1,0 +1,140 @@
+{# 
+  Reusable Template Macros
+  Components that can be used across different templates
+#}
+
+{# Project Card Macro #}
+{% macro project_card(title, description, link=None, link_text="View Project") %}
+<div class="col-lg-6">
+  {% if link %}
+    <a href="{{ link }}" target="_blank" style="text-decoration: none; color: inherit;">
+      <div class="achievement-card" style="cursor: pointer;">
+        <h5><strong>{{ title }}</strong></h5>
+        <p>{{ description }}</p>
+      </div>
+    </a>
+  {% else %}
+    <div class="achievement-card">
+      <h5><strong>{{ title }}</strong></h5>
+      <p>{{ description }}</p>
+    </div>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{# Achievement/Metric Card Macro #}
+{% macro metric_card(number, description, size="md") %}
+{% set col_class = "col-md-4" if size == "md" else "col-lg-3" if size == "sm" else "col-md-6" %}
+<div class="{{ col_class }}">
+  <div class="achievement-card text-center">
+    <div class="metric">{{ number }}</div>
+    <p class="mb-0">{{ description }}</p>
+  </div>
+</div>
+{% endmacro %}
+
+{# Contact Button Macro #}
+{% macro contact_button(icon, text, href, modal_target=None) %}
+{% if modal_target %}
+  <a href="#" class="contact-btn" data-toggle="modal" data-target="#{{ modal_target }}">
+    <i class="{{ icon }}"></i> {{ text }}
+  </a>
+{% else %}
+  <a href="{{ href }}" class="contact-btn">
+    <i class="{{ icon }}"></i> {{ text }}
+  </a>
+{% endif %}
+{% endmacro %}
+
+{# Skill Badge Macro #}
+{% macro skill_badge(skill_name, link=None) %}
+{% if link %}
+  <a href="{{ link }}" target="_blank" style="text-decoration: none;">
+    <span class="skill-badge">{{ skill_name }}</span>
+  </a>
+{% else %}
+  <span class="skill-badge">{{ skill_name }}</span>
+{% endif %}
+{% endmacro %}
+
+{# Skills Section Macro #}
+{% macro skills_section(title, skills) %}
+<div class="col-md-6">
+  <h3 class="mb-4">{{ title }}</h3>
+  <div class="mb-4">
+    {% for skill in skills %}
+      {{ skill_badge(skill.name if skill is mapping else skill, skill.link if skill is mapping else None) }}
+    {% endfor %}
+  </div>
+</div>
+{% endmacro %}
+
+{# Experience Card Macro #}
+{% macro experience_card(title, company, date_range, achievements) %}
+<div class="achievement-card">
+  <h5><strong>{{ title }}</strong>{% if company %} - {{ company }}{% endif %}</h5>
+  {% if date_range %}
+    <p class="text-muted mb-3">{{ date_range }}</p>
+  {% endif %}
+  {% if achievements %}
+    <ul class="mb-0">
+      {% for achievement in achievements %}
+        <li>{{ achievement }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{# Education Card Macro #}
+{% macro education_card(degree, institution, year, description=None) %}
+<div class="achievement-card">
+  <h5><strong>{{ degree }}</strong></h5>
+  <p class="text-muted mb-2">{{ institution }}{% if year %} ({{ year }}){% endif %}</p>
+  {% if description %}
+    <p class="mb-0">{{ description }}</p>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{# Tab Navigation Macro #}
+{% macro tab_nav(tabs, active_tab=None) %}
+<ul class="nav nav-tabs" id="contentTabs" role="tablist">
+  {% for tab in tabs %}
+    {% set is_active = (tab.id == active_tab) or (loop.first and not active_tab) %}
+    <li class="nav-item">
+      <a class="nav-link{% if is_active %} active{% endif %}" 
+         id="{{ tab.id }}-tab" 
+         data-toggle="tab" 
+         href="#{{ tab.id }}" 
+         role="tab">
+        {{ tab.label }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{# Tab Content Wrapper Macro #}
+{% macro tab_content(tab_id, content, is_active=False) %}
+<div class="tab-pane fade{% if is_active %} show active{% endif %}" id="{{ tab_id }}" role="tabpanel">
+  {{ content }}
+</div>
+{% endmacro %}
+
+{# Sidebar Profile Macro #}
+{% macro sidebar_profile(name, title, description, image_path, contact_buttons) %}
+<div class="sidebar">
+  <div class="text-center">
+    <img src="{{ image_path }}" alt="{{ name }}" class="profile-img" />
+    <h1 class="h2 mb-3">{{ name }}</h1>
+    <h2 class="h5 mb-4 opacity-75">{{ title }}</h2>
+    <p class="mb-4" style="font-size: 0.95em; line-height: 1.6;">
+      {{ description }}
+    </p>
+    <div class="contact-buttons">
+      {{ contact_buttons }}
+    </div>
+  </div>
+</div>
+{% endmacro %}
