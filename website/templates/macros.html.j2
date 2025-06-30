@@ -70,12 +70,23 @@
 {% endmacro %}
 
 {# Experience Card Macro #}
-{% macro experience_card(title, company, date_range, achievements) %}
+{% macro experience_card(title, company, date_range, achievements, logo_path=None, company_url=None) %}
 <div class="achievement-card">
-  <h5><strong>{{ title }}</strong>{% if company %} - {{ company }}{% endif %}</h5>
-  {% if date_range %}
-    <p class="text-muted mb-3">{{ date_range }}</p>
-  {% endif %}
+  <div class="d-flex justify-content-between align-items-start">
+    <div class="flex-grow-1">
+      <h5><strong>{{ title }}</strong>{% if company %} - {{ company }}{% endif %}</h5>
+      {% if date_range %}
+        <p class="text-muted mb-3">{{ date_range }}</p>
+      {% endif %}
+    </div>
+    {% if logo_path and company_url %}
+      <div class="ms-3">
+        <a href="{{ company_url }}" target="_blank" class="logo-link">
+          <img src="{{ logo_path }}" alt="{{ company }} logo" class="company-logo" style="height: 40px; width: auto;">
+        </a>
+      </div>
+    {% endif %}
+  </div>
   {% if achievements %}
     <ul class="mb-0">
       {% for achievement in achievements %}
@@ -87,13 +98,24 @@
 {% endmacro %}
 
 {# Education Card Macro #}
-{% macro education_card(degree, institution, year, description=None) %}
+{% macro education_card(degree, institution, year, description=None, logo_path=None, institution_url=None) %}
 <div class="achievement-card">
-  <h5><strong>{{ degree }}</strong></h5>
-  <p class="text-muted mb-2">{{ institution }}{% if year %} ({{ year }}){% endif %}</p>
-  {% if description %}
-    <p class="mb-0">{{ description }}</p>
-  {% endif %}
+  <div class="d-flex justify-content-between align-items-start">
+    <div class="flex-grow-1">
+      <h5><strong>{{ degree }}</strong></h5>
+      <p class="text-muted mb-2">{{ institution }}{% if year %} ({{ year }}){% endif %}</p>
+      {% if description %}
+        <p class="mb-0">{{ description }}</p>
+      {% endif %}
+    </div>
+    {% if logo_path and institution_url %}
+      <div class="ms-3">
+        <a href="{{ institution_url }}" target="_blank" class="logo-link">
+          <img src="{{ logo_path }}" alt="{{ institution }} logo" class="company-logo" style="height: 40px; width: auto;">
+        </a>
+      </div>
+    {% endif %}
+  </div>
 </div>
 {% endmacro %}
 

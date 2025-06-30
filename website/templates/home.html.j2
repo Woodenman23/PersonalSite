@@ -24,21 +24,17 @@
 
   <!-- Tab Content -->
   <div class="tab-content" id="contentTabsContent">
+    
     <!-- About Tab -->
     <div class="tab-pane fade show active" id="about" role="tabpanel">
 
-      <!-- Skills -->
+    <!-- Key Achievements -->
       <div class="row mb-5">
-        {{ skills_section("DevOps & Infrastructure", [
-          "AWS", "Docker/Kubernetes", "Ansible", "CI/CD (GitLab, Jenkins)", 
-          "Infrastructure as Code", "Linux/Windows", "Apache/Nginx"
-        ]) }}
-        
-        {{ skills_section("Development & APIs", [
-          "Python", "JavaScript", "FastAPI", "OpenAI API", 
-          "LangChain", "SQL/PostgreSQL", "Oracle"
-        ]) }}
+        {{ metric_card("40%", "Reduction in manual deployment tasks") }}
+        {{ metric_card("50%", "Faster OS deployment with Ansible") }}
+        {{ metric_card("10x", "Faster App deployment with CI/CD pipelines") }}
       </div>
+    
 
       <!-- Experience -->
       <div class="row mb-5">
@@ -53,29 +49,33 @@
               "Built comprehensive Ansible configuration management system", 
               "Delivered cross-functional automation tools improving deployment velocity",
               "Managed enterprise infrastructure: firewalls, monitoring, VM deployment"
-            ]
+            ],
+            logo_path="/static/images/blu-wireless-logo.jpeg",
+            company_url="https://www.bluwireless.com"
           ) }}
         </div>
       </div>
 
       <!-- Education -->
-      <div class="row">
+      <div class="row mb-5">
         <div class="col-12">
           <h3 class="mb-4">Education</h3>
           {{ education_card(
             degree="MPhys Theoretical Physics, 2:1",
             institution="University of Liverpool",
             year="2015",
-            description="Strong foundation in complex problem-solving, analytical thinking, and mathematical precision that drives my engineering approach."
+            description="Strong foundation in complex problem-solving, analytical thinking, and mathematical precision that drives my engineering approach.",
+            logo_path="/static/images/uni_logo.png",
+            institution_url="https://www.liverpool.ac.uk"
           ) }}
         </div>
       </div>
 
-      <!-- Key Achievements (moved to bottom) -->
+          <!-- Skills -->
       <div class="row mb-5">
-        {{ metric_card("40%", "Reduction in manual deployment tasks") }}
-        {{ metric_card("50%", "Faster OS deployment with Ansible") }}
-        {{ metric_card("25%", "Resource optimization achieved") }}
+        {{ skills_section("Systems & Infrastructure", systems_skills) }}
+        {{ skills_section("Languages, APIs & Tooling", languages_skills) }}
+
       </div>
     </div>
 
@@ -94,12 +94,20 @@
           description="A cover letter generator that takes a job description and user resume as input and outputs a cover letter tailored to the role.",
           link="https://coverlettered.me/demo"
         ) }}
+
+        {{ project_card(
+          title="Dicto 🎤",
+          description="An AI powered voice-to-text application that summarizes and catagorizes ideas into useful notes.",
+          link="https://josephfoster.me/dicto"
+        ) }}
+        
         
         {{ project_card(
           title="Lucid Voice 🤖",
           description="LED visualization system for conversational AI responses using OpenAI API, speech-to-text and text-to-speech APIs. Interpreting spoken inputs and visualising responses.",
           link="https://github.com/Woodenman23/led_controller"
         ) }}
+        </div>
       </div>
     </div>
   </div>

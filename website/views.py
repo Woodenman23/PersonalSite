@@ -2,13 +2,16 @@ import os
 from flask import Blueprint, render_template, request, jsonify
 from flask_mail import Message
 from website import mail
+from website.config.skills import get_skills_with_links, SYSTEMS_INFRASTRUCTURE_SKILLS, LANGUAGES_APIS_TOOLING_SKILLS
 
 views = Blueprint("views", __name__)
 
 
 @views.route("/")
 def home():
-    return render_template("home.html.j2")
+    return render_template("home.html.j2", 
+                         systems_skills=get_skills_with_links(SYSTEMS_INFRASTRUCTURE_SKILLS),
+                         languages_skills=get_skills_with_links(LANGUAGES_APIS_TOOLING_SKILLS))
 
 
 @views.route("/send-email", methods=["POST"])
