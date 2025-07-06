@@ -98,14 +98,18 @@
 {% endmacro %}
 
 {# Education Card Macro #}
-{% macro education_card(degree, institution, year, description=None, logo_path=None, institution_url=None) %}
+{% macro education_card(degree, institution, year, achievements=None, logo_path=None, institution_url=None) %}
 <div class="achievement-card">
   <div class="d-flex justify-content-between align-items-start">
     <div class="flex-grow-1">
       <h5><strong>{{ degree }}</strong></h5>
       <p class="text-muted mb-2">{{ institution }}{% if year %} ({{ year }}){% endif %}</p>
-      {% if description %}
-        <p class="mb-0">{{ description }}</p>
+      {% if achievements %}
+        <ul class="mb-0">
+          {% for achievement in achievements %}
+            <li>{{ achievement }}</li>
+          {% endfor %}
+        </ul>
       {% endif %}
     </div>
     {% if logo_path and institution_url %}
